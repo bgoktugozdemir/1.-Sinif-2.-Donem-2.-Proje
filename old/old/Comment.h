@@ -16,7 +16,6 @@ public:
 	User* UserId;
 	Movie* MovieId;
 	string comment;
-	int movie_h;
 
 	Comment();
 	Comment(int CommentId, time_t CommentTime, string comment, User* UserId);
