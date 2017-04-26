@@ -1,8 +1,8 @@
 #include "Movie.h"
 
-using namespace std;
 
-Movie::Movie(int MovieId, string MovieTitle, string MovieGenre, string MovieReleaseYear, string MovieLanguage, float MovieRating, string MovieCensorship, string MovieStory, unsigned int MovieBudget, int studio_id)
+
+Movie::Movie(int MovieId, string MovieTitle, string MovieGenre, string MovieReleaseYear, string MovieLanguage, float MovieRating, string MovieCensorship, string MovieStory, unsigned int MovieBudget)
 {
 	this->MovieId = MovieId;
 	this->MovieTitle = MovieTitle;
@@ -13,7 +13,6 @@ Movie::Movie(int MovieId, string MovieTitle, string MovieGenre, string MovieRele
 	this->MovieCensorship = MovieCensorship;
 	this->MovieStory = MovieStory;
 	this->MovieBudget = MovieBudget;
-	this->studio_id = studio_id;
 }
 
 Movie::Movie()
@@ -27,7 +26,6 @@ Movie::Movie()
 	this->MovieCensorship = "";
 	this->MovieStory = "";
 	this->MovieBudget = 0;
-	this->studio_id = 0;
 }
 
 

@@ -1,6 +1,4 @@
 #include "Database.h"
-#include "Movie.h"
-#include "Comment.h"
 
 Database::Database()
 {
@@ -287,10 +285,11 @@ void Database::ReadUser(string path)
 
 		int UserId;
 		userType UserType;
+		int usertype_id;
 		string UserName;
 		string UserPassword;
 		string UserEmail;
-
+		
 		bool isFirstRow = true;
 		while (!file.eof())
 		{
@@ -299,8 +298,8 @@ void Database::ReadUser(string path)
 				isFirstRow = false;
 				continue;
 			}
-			file >> UserId >> UserType >> UserName >> UserPassword >> UserEmail; //HATA VERÝYOR
-			User * addThis = new User(UserId, UserType, UserName, UserPassword, UserEmail);
+			file >> UserId >> usertype_id >> UserName >> UserPassword >> UserEmail; //HATA VERÝYOR (UserType'ý usertype_id yapýnca düzeldi)
+			User * addThis = new User(UserId, UserType, UserName, UserPassword, UserEmail); //UserType mý usertype_id mi?
 			Users.push_back(addThis);
 		}
 		file.close();

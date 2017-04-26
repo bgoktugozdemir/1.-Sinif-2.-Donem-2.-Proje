@@ -3,6 +3,7 @@
 #pragma once
 #define Version 1.04
 #include "Database.h"
+#include "Background.h"
 #include <iostream>
 #include <conio.h>
 #include <stdio.h>
@@ -13,7 +14,7 @@ class Interface
 {
 public:
 	Interface();
-	Interface(Database * data);
+	Interface(Database * data, Background *background);
 	~Interface();
 
 	void Start();
@@ -64,5 +65,6 @@ public:
 	void ShowUsers(list<User*> &list);
 private:
 	Database *Datas;
+	Background *Backgrounds;
 };
 

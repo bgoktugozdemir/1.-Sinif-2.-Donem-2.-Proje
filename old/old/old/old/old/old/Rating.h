@@ -10,10 +10,8 @@ public:
 	User *UserId;
 	Movie* MovieId;
 	float rating;
-	int user_id;
-	int movie_id;
 
-	Rating(int RatingId, float rating, int user_id, int movie_id);
+	Rating(int RatingId, float rating);
 	Rating();
 	~Rating();
 
