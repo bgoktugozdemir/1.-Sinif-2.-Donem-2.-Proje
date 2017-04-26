@@ -133,7 +133,44 @@ bool Background::RemoveUser(int UserId)
 
 bool Background::SaveCommentInUser(Comment * comment, User * user)
 {
-	User 
+	comment->UserId = user;
+	user->comments.push_back(comment);
+	return true;
+}
+
+bool Background::SaveCommentInMovie(Comment * comment, Movie * movie)
+{
+	comment->MovieId = movie;
+	movie->comments.push_back(comment);
+	return true;
+}
+
+bool Background::SaveMovieInStudio(Movie * movie, Studio * studio)
+{
+	movie->studio = studio;
+	studio->movies.push_back(movie);
+	return true;
+}
+
+bool Background::SaveRatingInUser(Rating * rating, User * user)
+{
+	rating->UserId = user;
+	user->ratings.push_back(rating);
+	return true;
+}
+
+bool Background::SaveRatingInMovie(Rating * rating, Movie * movie)
+{
+	rating->MovieId = movie;
+	movie->ratings.push_back(rating);
+	return true;
+}
+
+bool Background::RemoveCommentInUser(Comment * comment, User * user)
+{
+	comment->UserId;
+	list<Comment*> &comments = user->comments;
+	comments.erase(find(comments.begin(), comments.end(), comment));
 	return true;
 }
 
@@ -142,5 +179,29 @@ bool Background::RemoveCommentInMovie(Comment * comment, Movie * movie)
 	comment->MovieId;
 	list<Comment*> &comments = movie->comments;
 	comments.erase(find(comments.begin(), comments.end(), comment));
+	return true;
+}
+
+bool Background::RemoveMovieInStudio(Movie * movie, Studio * studio)
+{
+	movie->studio;
+	list<Movie*> &movies = studio->movies;
+	movies.erase(find(movies.begin(), movies.end(), movie));
+	return true;
+}
+
+bool Background::RemoveRatingInUser(Rating * rating, User * user)
+{
+	rating->UserId;
+	list<Rating*> &ratings = user->ratings;
+	ratings.erase(find(ratings.begin(), ratings.end(), ratings));
+	return true;
+}
+
+bool Background::RemoveRatingInMovie(Rating * rating, Movie * movie)
+{
+	rating->MovieId;
+	list<Rating*> &ratings = movie->ratings;
+	ratings.erase(find(ratings.begin(), ratings.end(), rating));
 	return true;
 }
