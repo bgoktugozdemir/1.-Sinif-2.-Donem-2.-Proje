@@ -1,7 +1,7 @@
 //LÝST EKRANLARINDAKÝ EDÝTLERDE SORUN VAR!
 
 #pragma once
-#define Version 1.04
+#define Version 1.07
 #include "Database.h"
 #include "Background.h"
 #include <iostream>

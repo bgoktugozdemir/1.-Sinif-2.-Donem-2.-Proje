@@ -16,12 +16,16 @@ public:
 	User* UserId;
 	Movie* MovieId;
 	string comment;
-	int movie_id;
-	int user_id;
 
 	Comment();
-	Comment(int CommentId, time_t CommentTime, string comment, int movie_id, int user_id);
+	Comment(int CommentId, time_t CommentTime, string comment, User* UserId);
 	~Comment();
+	void addComment();
+	void deleteComment();
+	void editComment();
+	void showComment();
+	void DosyayaYaz();
+	void DosyayiOku();
 };
 
 
