@@ -284,7 +284,7 @@ void Database::ReadUser(string path)
 		file.getline(line, 1000);
 
 		int UserId;
-		userType UserType;
+		userType UserType=Member;
 		int usertype_id;
 		string UserName;
 		string UserPassword;
@@ -402,12 +402,13 @@ bool Database::SaveStudio(string path)
 		file << "Studio_Id	StudioName	StudioInfo";
 		string tab = "	";
 		list<Studio*>::iterator i;
+
+		int StudioId=-1;
+		string StudioName;
+		string StudioInfo;
+
 		for (i = Studios.begin(); i != Studios.end(); i++)
 		{
-			int StudioId;
-			string StudioName;
-			string StudioInfo;
-
 			file << endl << StudioId << tab << StudioName << tab << StudioInfo;
 		}
 		file.close();

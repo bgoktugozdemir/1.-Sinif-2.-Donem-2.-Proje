@@ -1,7 +1,7 @@
 #pragma once
 #include <algorithm>
 #include "Database.h"
-
+#include "CommonData.h"
 using namespace std;
 
 class Background

@@ -1,7 +1,16 @@
 #pragma once
 #include <algorithm>
-#include "Database.h"
+//#include "Database.h"
 #include "CommonData.h"
+
+class Comment;
+class Database;
+class Interface;
+class Movie;
+class Rating;
+class Studio;
+class User;
+
 using namespace std;
 
 class Background

@@ -137,7 +137,7 @@ bool Database::SaveFiles(string commentPath, string moviePath, string ratingPath
 
 	return result;
 }
-
+/*
 void Database::ReadComment(string path)
 {
 	ifstream file;
@@ -185,3 +185,4 @@ void Database::RelationCommentsHaveUsers()
 		}
 	}
 }
+*/

@@ -121,7 +121,10 @@ void Interface::ListComments()				//EDÝTLERDEKÝ SORUNU ÇÖZ
 	switch (Selection)
 	{
 	case '1':
-		EditComments();  //DÜZELT
+		int CommentId;
+		cout << "Please enter the comment's id: ";
+		cin >> CommentId;
+		EditComments(CommentId);  //DÜZELT
 		break;
 	case '2':
 		AddComments();
@@ -135,10 +138,15 @@ void Interface::ListComments()				//EDÝTLERDEKÝ SORUNU ÇÖZ
 	}
 }
 
-void Interface::AddComments()										 //CommentTime'a çözüm bul!
+void Interface::AddComments()										 //CommentTime'a çözüm bul!++++++
 {
 	cout << "You will add a new comment..." << endl;
 	Comment * newComment = new Comment(-1, time(NULL), "", -1, -1);
+}
+
+void Interface::DeleteComments()
+{
+
 }
 
 void Interface::ListMovies()
@@ -161,7 +169,10 @@ void Interface::ListMovies()
 	switch (Selection)
 	{
 	case '1':
-		EditMovies();
+		int MovieId;
+		cout << "Please enter the movie's id: ";
+		cin >> MovieId;
+		EditMovies(MovieId);
 		break;
 	case '2':
 		AddMovies();
@@ -262,17 +273,25 @@ void Interface::AddMovies()
 
 	Datas->Movies.push_back(newMovie);
 }
-/*
+
 void Interface::DeleteMovies()						//ÖðrenciÝþleri Classýna alternatif bul. 
 {
-	cout << "Please enter the movie's id you want to delete -> ";
+	cout << "Please enter the movie's id -> ";
 	int id;
 	cin >> id;
-	if ()
 
-	Movie * movie = Datas->FindTheMovie(id);
+	if (Backgrounds->RemoveMovie == false)
+	{
+		cout << "Operation failed!. Please, make sure the movie's id is correct. " << endl;
+		DeleteMovies();
+	}
+
+	else
+	{
+		cout << id << "Operation successful!" << endl;
+	}
 }
-*/
+
 void Interface::ListRatings()
 {
 	ShowRatings(Datas->Ratings);
@@ -293,7 +312,10 @@ void Interface::ListRatings()
 	switch (Selection)
 	{
 	case '1':
-		EditRatings();
+		int RatingId;
+		cout << "Please enter the rating's id: ";
+		cin >> RatingId;
+		EditRatings(RatingId);
 		break;
 	case '2':
 		AddRatings();
@@ -372,6 +394,9 @@ void Interface::ListStudios()
 	switch (Selection)
 	{
 	case '1':
+		int StudioId;
+		cout << "Please enter the studio's id: ";
+		cin >> StudioId;
 		EditStudios();
 		break;
 	case '2':
@@ -442,6 +467,9 @@ void Interface::ListUsers()
 	switch (Selection)
 	{
 	case '1':
+		int UserId;
+		cout << "Please enter the user's id: ";
+		cin >> UserId;
 		EditUsers();
 		break;
 	case '2':

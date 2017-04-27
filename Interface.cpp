@@ -53,7 +53,7 @@ void Interface::Start()
 void Interface::MainMenu()
 {
 	char yazi[60];
-	sprintf(yazi, "title Welcome back to Movie System (v%.2f)", Version);
+	sprintf_s(yazi, "title Welcome back to Movie System (v%.2f)", Version);
 	system(yazi);
 	cout << "Main Menu" << endl
 		 << "a - Comments Menu" << endl

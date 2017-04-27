@@ -1,6 +1,7 @@
 #include "User.h"
 #include <fstream>
 
+using namespace std;
 
 User::User(int UserId, userType UserType, string UserName, string UserPassword, string UserEmail)
 {

@@ -18,6 +18,14 @@ class Movie;
 class Rating;
 class Studio;
 
+enum userType
+{
+	Administrator,
+	Writer,
+	MovieCritic,
+	Member
+};
+
 class User
 {
 public:
@@ -32,5 +40,6 @@ public:
 	User(int UserId, userType UserType, string UserName, string UserPassword, string UserEmail);
 	User();
 	~User();
+
 };
 
