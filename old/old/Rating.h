@@ -1,5 +1,6 @@
 #pragma once
 #include <list>
+#include "CommonData.h"
 
 class User;
 class Movie;

@@ -4,6 +4,7 @@
 #include "Studio.h"
 #include "Comment.h"
 #include "User.h"
+#include "CommonData.h"
 
 using namespace std;
 
