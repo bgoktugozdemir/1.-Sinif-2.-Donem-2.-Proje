@@ -1,5 +1,5 @@
 #pragma once
-#define Version 1.03
+#define Version 1.02
 class Interface
 {
 public:
