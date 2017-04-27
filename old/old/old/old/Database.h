@@ -5,6 +5,8 @@
 #include <list>
 #include <iostream>
 
+#include "Background.h"
+#include "Interface.h"
 #include "Comment.h"
 #include "Movie.h"
 #include "Rating.h"

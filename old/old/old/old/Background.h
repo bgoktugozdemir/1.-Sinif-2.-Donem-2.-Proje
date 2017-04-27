@@ -1,15 +1,6 @@
 #pragma once
 #include <algorithm>
-//#include "Database.h"
-#include "CommonData.h"
-
-class Comment;
-class Database;
-class Interface;
-class Movie;
-class Rating;
-class Studio;
-class User;
+#include "Database.h"
 
 using namespace std;
 
