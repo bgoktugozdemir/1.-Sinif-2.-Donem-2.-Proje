@@ -1,12 +1,13 @@
 //LÝST EKRANLARINDAKÝ EDÝTLERDE SORUN VAR!
 
 #pragma once
-#define Version 1.04
+
 #include "Database.h"
 #include "Background.h"
 #include <iostream>
 #include <conio.h>
 #include <stdio.h>
+#include "CommonData.h"
 
 using namespace std;
 

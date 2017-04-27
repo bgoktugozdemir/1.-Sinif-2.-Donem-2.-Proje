@@ -53,7 +53,7 @@ void Interface::Start()
 void Interface::MainMenu()
 {
 	char yazi[60];
-	sprintf(yazi, "title Welcome back to Movie System (v%.2f)", Version);
+	sprintf_s(yazi, "title Welcome back to Movie System (v%.2f)", Version);
 	system(yazi);
 	cout << "Main Menu" << endl
 		 << "a - Comments Menu" << endl
@@ -185,7 +185,7 @@ void Interface::DeleteComments()
 	int id;
 	cin >> id;
 
-	if (Backgrounds->RemoveComment == false)
+	if (Backgrounds->RemoveComment(id) == false)
 	{
 		cout << "Operation failed!. Please, make sure the comment's id is correct. " << endl;
 		DeleteComments();
@@ -327,7 +327,7 @@ void Interface::DeleteMovies()						//ÖðrenciÝþleri Classýna alternatif bul.
 	int id;
 	cin >> id;
 
-	if (Backgrounds->RemoveMovie == false)
+	if (Backgrounds->RemoveMovie(id) == false)
 	{
 		cout << "Operation failed! Please, make sure the movie's id is correct. " << endl;
 		DeleteMovies();
@@ -426,7 +426,7 @@ void Interface::DeleteRatings()
 	int id;
 	cin >> id;
 
-	if (Backgrounds->RemoveRating == false)
+	if (Backgrounds->RemoveRating(id) == false)
 	{
 		cout << "Operation failed! Please, make sure the rating's id is correct. " << endl;
 		DeleteRatings();
@@ -516,7 +516,7 @@ void Interface::DeleteStudios()
 	int id;
 	cin >> id;
 
-	if (Backgrounds->RemoveStudio == false)
+	if (Backgrounds->RemoveStudio(id) == false)
 	{
 		cout << "Operation failed! Please, make sure the studio's id is correct. " << endl;
 		DeleteStudios();
@@ -643,7 +643,7 @@ void Interface::DeleteUsers()
 	int id;
 	cin >> id;
 
-	if (Backgrounds->RemoveUser == false)
+	if (Backgrounds->RemoveUser(id) == false)
 	{
 		cout << "Operation failed! Please, make sure the user's id is correct. " << endl;
 		DeleteUsers();
@@ -711,7 +711,7 @@ void Interface::ShowMovies(list<Movie*>& list)
 	}
 }
 
-void Interface::ShowRatings(list<Rating*>& list)
+void Interface::ShowRatings(list<Rating*> &list)
 {
 	//RatingId >> rating >> user_id >> movie_id;
 	cout << "Rating_Id\tRating\tUser_Id\tMovie_Id" << endl;

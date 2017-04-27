@@ -19,10 +19,10 @@
 #include "Studio.h"
 #include "User.h"
 
-#define Version 1.08
+#define Version 1.09
 
 using namespace std;
-
+/*
 enum userType
 {
 	Administrator,
@@ -30,3 +30,4 @@ enum userType
 	MovieCritic,
 	Member
 };
+*/

@@ -6,7 +6,6 @@
 //#include "User.h"
 #include "CommonData.h"
 
-
 class Background;
 class Comment;
 class Database;

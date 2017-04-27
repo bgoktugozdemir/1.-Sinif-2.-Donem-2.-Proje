@@ -1,6 +1,4 @@
 #include "Background.h"
-#include <xutility>
-#include <utility>
 
 
 Background::Background()
@@ -48,7 +46,7 @@ bool Background::SaveNewUser(User * newUser)
 }
 
 bool Background::RemoveComment(int CommentId)
-{
+{/*
 	Comment *oldComment = Datas->FindTheComment(CommentId);
 
 	RemoveCommentInMovie(oldComment, oldComment->MovieId);
@@ -59,10 +57,18 @@ bool Background::RemoveComment(int CommentId)
 
 	delete oldComment;
 	return true;
+	*/
+	Comment* deleteThis = Datas->FindTheComment(CommentId);
+	if (deleteThis == NULL)	return false;
+	Datas->Comments.remove(deleteThis);
+
+	deleteThis->UserId = NULL;
+	deleteThis->MovieId = NULL;
 }
 
 bool Background::RemoveMovie(int MovieId)
 {
+	/*
 	Movie *oldMovie = Datas->FindTheMovie(MovieId);
 
 	RemoveMovieInStudio(oldMovie, oldMovie->studio);
@@ -81,10 +87,24 @@ bool Background::RemoveMovie(int MovieId)
 
 	Datas->Movies.erase(find(Datas->Movies.begin(), Datas->Movies.end(), oldMovie));
 	return true;
+	*/
+
+	Movie* deleteThis = Datas->FindTheMovie(MovieId);
+	if (deleteThis == NULL) return false;
+	Datas->Movies.remove(deleteThis);
+
+	deleteThis->studio = NULL;
+
+	Datas->RemoveRelationCommentsHaveMovies(deleteThis);
+	Datas->RemoveRelationRatingsHaveMovies(deleteThis);
+
+	delete deleteThis;
+	return true;
 }
 
 bool Background::RemoveRating(int RatingId)
-{
+{	
+	/*
 	Rating *oldRating = Datas->FindTheRating(RatingId);
 
 	RemoveRatingInUser(oldRating, oldRating->UserId);
@@ -92,10 +112,22 @@ bool Background::RemoveRating(int RatingId)
 
 	Datas->Ratings.erase(find(Datas->Ratings.begin(), Datas->Ratings.end(), oldRating));
 	return true;
+	*/
+
+	Rating* deleteThis = Datas->FindTheRating(RatingId);
+	if (deleteThis == NULL)	return false;
+	Datas->Ratings.remove(deleteThis);
+
+	deleteThis->UserId = NULL;
+	deleteThis->MovieId = NULL;
+
+	delete deleteThis;
+	return true;
 }
 
 bool Background::RemoveStudio(int StudioId)
 {
+	/*
 	Studio *oldStudio = Datas->FindTheStudio(StudioId);
 
 	list<Movie*>::iterator i;
@@ -107,10 +139,20 @@ bool Background::RemoveStudio(int StudioId)
 
 	Datas->Studios.erase(find(Datas->Studios.begin(), Datas->Studios.end(), oldStudio));
 	return true;
+	*/
+	Studio* deleteThis = Datas->FindTheStudio(StudioId);
+	if (deleteThis == NULL) return false;
+	Datas->Studios.remove(deleteThis);
+
+	Datas->RemoveRelationMoviesHaveStudios(deleteThis);
+
+	delete deleteThis;
+	return true;
 }
 
 bool Background::RemoveUser(int UserId)
 {
+	/*
 	User *oldUser = Datas->FindTheUser(UserId);
 
 	list<Comment*>::iterator i;
@@ -127,6 +169,13 @@ bool Background::RemoveUser(int UserId)
 
 	Datas->Users.erase(find(Datas->Users.begin(), Datas->Users.end(), oldUser));
 	return true;
+	*/
+	User* deleteThis = Datas->FindTheUser(UserId);
+	if (deleteThis == NULL) return false;
+	Datas->Users.remove(deleteThis);
+
+	Datas->RemoveRelationCommentsHaveUsers(deleteThis);
+	Datas->RemoveRelationRatingsHaveUsers(deleteThis);
 }
 
 bool Background::SaveCommentInUser(Comment * comment, User * user)
