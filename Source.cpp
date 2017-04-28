@@ -1,21 +1,23 @@
 ﻿//Berat G�ktu� �zdemir 150101002
 
 #include <iostream>
-
+#include "Database.h"
+#include "Interface.h"
 
 using namespace std;
 
-int main()
+void main()
 {
 //	setlocale(LC_ALL, "Turkish");
-	/*
+	
 	Database data;
 	data.FillLists();
+	
+	Background background(&data);
 
-	Interface Screens;
+	Interface Screens(&data, &background);
 	Screens.Start();
-	*/
-	return 0;
+	
 	
 	/*
 	User user1(8, Member, "goktug", "123", "goktuggg@hotmail.com");

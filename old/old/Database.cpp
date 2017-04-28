@@ -403,7 +403,7 @@ bool Database::SaveStudio(string path)
 		string tab = "	";
 		list<Studio*>::iterator i;
 
-		int StudioId = -1;
+		int StudioId=-1;
 		string StudioName;
 		string StudioInfo;
 

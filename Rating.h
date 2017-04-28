@@ -1,17 +1,15 @@
 #pragma once
-//#include <list>
-#include "CommonData.h"
+#include <iostream>
+#include <string>
+#include <list>
+#include "Movie.h"
+#include "User.h"
 
-class Background;
-class Comment;
-class Database;
-class Interface;
-class Movie;
-class Studio;
-class User;
+
 
 using namespace std;
-
+class User;
+class Movie;
 class Rating
 {
 public:

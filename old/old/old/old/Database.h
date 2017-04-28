@@ -1,18 +1,27 @@
 #pragma once
-#include <string>
-#include <iterator>
-#include <fstream>
-#include <list>
-#include <iostream>
-
-#include "Background.h"
-#include "Interface.h"
-#include "Comment.h"
-#include "Movie.h"
-#include "Rating.h"
-#include "Studio.h"
-#include "User.h"
+//#include <string>
+//#include <iterator>
+//#include <fstream>
+//#include <list>
+//#include <iostream>
+//
+//#include "Background.h"
+//#include "Interface.h"
+//#include "Comment.h"
+//#include "Movie.h"
+//#include "Rating.h"
+//#include "Studio.h"
+//#include "User.h"
 #include "CommonData.h"
+
+
+class Background;
+class Comment;
+class Interface;
+class Movie;
+class Rating;
+class Studio;
+class User;
 
 using namespace std;
 

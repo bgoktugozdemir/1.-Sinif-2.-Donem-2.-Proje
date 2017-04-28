@@ -24,11 +24,5 @@ public:
 	User(int UserId, userType UserType, string UserName, string UserPassword, string UserEmail);
 	User();
 	~User();
-	void addUser();
-	void deleteUser();
-	void editUser();
-	void showUser();
-	void DosyayaYaz();
-	void DosyayiOku();
 };
 

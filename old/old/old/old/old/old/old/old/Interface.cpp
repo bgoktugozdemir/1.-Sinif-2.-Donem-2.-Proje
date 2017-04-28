@@ -4,9 +4,10 @@ Interface::Interface()
 {
 }
 
-Interface::Interface(Database * data)
+Interface::Interface(Database * data, Background * background)
 {
 	Datas = data;
+	Backgrounds = background
 }
 
 Interface::~Interface()

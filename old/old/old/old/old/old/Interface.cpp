@@ -7,7 +7,7 @@ Interface::Interface()
 Interface::Interface(Database * data, Background * background)
 {
 	Datas = data;
-	Backgrounds = background
+	Backgrounds = background;
 }
 
 Interface::~Interface()
@@ -124,7 +124,7 @@ void Interface::ListComments()				//EDÝTLERDEKÝ SORUNU ÇÖZ
 		int CommentId;
 		cout << "Please enter the comment's id: ";
 		cin >> CommentId;
-		EditComments(CommentId);  //DÜZELT
+		EditComments(Datas->FindTheComment(CommentId));  //DÜZELT
 		break;
 	case '2':
 		AddComments();
@@ -138,6 +138,41 @@ void Interface::ListComments()				//EDÝTLERDEKÝ SORUNU ÇÖZ
 	}
 }
 
+void Interface::EditComments(Comment * comment)
+{
+	//ID
+	cout << "Comment's Id: " << comment->CommentId << endl
+		 << "Please enter a new id: ";
+	int newCommentId = -1;
+	cin >> newCommentId;
+
+	//TIME
+
+
+	//MOVIE_ID
+	cout << "Comment's Movie Id: " << comment->movie_id <<endl
+		 << "Please enter a new movie id: ";
+	int newmovie_id = -1;
+	cin >> newmovie_id;
+
+	//USER_ID
+	cout << "Comment's User Id: " << comment->user_id << endl
+		 << "Please enter a new user id: ";
+	int newuser_id = -1;
+	cin >> newuser_id;
+
+	//COMMENT
+	cout << "Comment's Comment: " << comment->comment << endl
+		 << "Please enter a new comment: ";
+	string newcomment = "";
+	cin >> newcomment;
+
+	comment->CommentId = newCommentId;
+	comment->movie_id = newmovie_id;
+	comment->user_id = newuser_id;
+	comment->comment = newcomment;
+}
+
 void Interface::AddComments()										 //CommentTime'a çözüm bul!++++++
 {
 	cout << "You will add a new comment..." << endl;
@@ -146,7 +181,19 @@ void Interface::AddComments()										 //CommentTime'a çözüm bul!++++++
 
 void Interface::DeleteComments()
 {
+	cout << "Please enter the comment's id -> ";
+	int id;
+	cin >> id;
 
+	if (Backgrounds->RemoveComment == false)
+	{
+		cout << "Operation failed!. Please, make sure the comment's id is correct. " << endl;
+		DeleteComments();
+	}
+	else
+	{
+		cout << id << "Operation successful!" << endl;
+	}
 }
 
 void Interface::ListMovies()
@@ -172,7 +219,7 @@ void Interface::ListMovies()
 		int MovieId;
 		cout << "Please enter the movie's id: ";
 		cin >> MovieId;
-		EditMovies(MovieId);
+		EditMovies(Datas->FindTheMovie(MovieId));
 		break;
 	case '2':
 		AddMovies();
@@ -282,10 +329,9 @@ void Interface::DeleteMovies()						//ÖðrenciÝþleri Classýna alternatif bul.
 
 	if (Backgrounds->RemoveMovie == false)
 	{
-		cout << "Operation failed!. Please, make sure the movie's id is correct. " << endl;
+		cout << "Operation failed! Please, make sure the movie's id is correct. " << endl;
 		DeleteMovies();
 	}
-
 	else
 	{
 		cout << id << "Operation successful!" << endl;
@@ -315,7 +361,7 @@ void Interface::ListRatings()
 		int RatingId;
 		cout << "Please enter the rating's id: ";
 		cin >> RatingId;
-		EditRatings(RatingId);
+		EditRatings(Datas->FindTheRating(RatingId));
 		break;
 	case '2':
 		AddRatings();
@@ -374,6 +420,23 @@ void Interface::AddRatings()
 	Datas->Ratings.push_back(newRating);
 }
 
+void Interface::DeleteRatings()
+{
+	cout << "Please enter the rating's id -> ";
+	int id;
+	cin >> id;
+
+	if (Backgrounds->RemoveRating == false)
+	{
+		cout << "Operation failed! Please, make sure the rating's id is correct. " << endl;
+		DeleteRatings();
+	}
+	else
+	{ 
+		cout << id << "Operation successful!" << endl;
+	}
+}
+
 void Interface::ListStudios()
 {
 	ShowStudios(Datas->Studios);
@@ -397,7 +460,7 @@ void Interface::ListStudios()
 		int StudioId;
 		cout << "Please enter the studio's id: ";
 		cin >> StudioId;
-		EditStudios();
+		EditStudios(Datas->FindTheStudio(StudioId));
 		break;
 	case '2':
 		AddStudios();
@@ -447,6 +510,23 @@ void Interface::AddStudios()
 	Datas->Studios.push_back(newStudio);
 }
 
+void Interface::DeleteStudios()
+{
+	cout << "Please enter the studio's id -> ";
+	int id;
+	cin >> id;
+
+	if (Backgrounds->RemoveStudio == false)
+	{
+		cout << "Operation failed! Please, make sure the studio's id is correct. " << endl;
+		DeleteStudios();
+	}
+	else
+	{
+		cout << id << "Operation successful!" << endl;
+	}
+}
+
 void Interface::ListUsers()
 {
 	ShowUsers(Datas->Users);
@@ -470,7 +550,7 @@ void Interface::ListUsers()
 		int UserId;
 		cout << "Please enter the user's id: ";
 		cin >> UserId;
-		EditUsers();
+		EditUsers(Datas->FindTheUser(UserId));
 		break;
 	case '2':
 		AddUsers();
@@ -555,4 +635,138 @@ void Interface::AddUsers()
 	EditUsers(newUser);
 
 	Datas->Users.push_back(newUser);
+}
+
+void Interface::DeleteUsers()
+{
+	cout << "Please enter the user's id -> ";
+	int id;
+	cin >> id;
+
+	if (Backgrounds->RemoveUser == false)
+	{
+		cout << "Operation failed! Please, make sure the user's id is correct. " << endl;
+		DeleteUsers();
+	}
+	else
+	{
+		cout << id << "Operation successful!" << endl;
+	}
+}
+
+void Interface::ShowComments(list<Comment*>& list)
+{
+	//CommentId >> CommentTime >> comment >> movie_id >> user_id;
+	cout << "Comment_Id\tComment_Time\tComment\tmovie_id\tuser_id" << endl;
+	//list<Comment*>::iterator i;
+	for (auto i=list.begin(); i != list.end(); i++)
+	{
+		cout << (*i)->CommentId
+			 << "	"
+			 << (*i)->CommentTime
+			 << "	"
+			 << (*i)->comment
+			 << "	"
+			 << (*i)->movie_id
+			 << "	"
+			 << (*i)->user_id
+			 << endl;
+	}
+	if (list.size()<1)
+	{
+		cout << "404: Not Found!" << endl;
+	}
+}
+
+void Interface::ShowMovies(list<Movie*>& list)
+{
+	//MovieId >> MovieTitle >> MovieGenre >> MovieReleaseYear >> MovieLanguage >> MovieRating >> MovieCensorship >> MovieStory >> MovieBudget >> studio_id;
+	cout << "Movie_Id\tMovie_Title\tMovie_Genre\tRelease_Year\tMovie_Language\tRating\tCensorship\tMovie_Story\tMovie_Budget\tStudio_Id" << endl;
+	for (auto i = list.begin(); i != list.end(); i++)
+	{
+		cout << (*i)->MovieId
+			 << "	"
+			 << (*i)->MovieTitle
+			 << "	"
+			 << (*i)->MovieGenre
+			 << "	"
+			 << (*i)->MovieReleaseYear
+			 << "	"
+			 << (*i)->MovieLanguage
+			 << "	"
+			 << (*i)->MovieRating
+			 << "	"
+			 << (*i)->MovieCensorship
+			 << "	"
+			 << (*i)->MovieStory
+			 << "	"
+			 << (*i)->MovieBudget
+			 << "	"
+			 << (*i)->studio_id
+			 << endl;
+	}
+	if (list.size()<1)
+	{
+		cout << "404: Not Found!" << endl;
+	}
+}
+
+void Interface::ShowRatings(list<Rating*>& list)
+{
+	//RatingId >> rating >> user_id >> movie_id;
+	cout << "Rating_Id\tRating\tUser_Id\tMovie_Id" << endl;
+	for (auto i = list.begin(); i != list.end(); i++)
+	{
+		cout << (*i)->RatingId
+			 << "	"
+			 << (*i)->rating
+			 << "	"
+			 << (*i)->user_id
+			 << "	"
+			 << (*i)->movie_id
+			 << endl;
+	}
+	if (list.size()<1)
+	{
+		cout << "404: Not Found!" << endl;
+	}
+
+}
+
+void Interface::ShowStudios(list<Studio*>& list)
+{
+	//StudioId >> StudioName >> StudioInfo
+	cout << "Studio_Id\tStudio_Name\tStudio_Info" << endl;
+	for (auto i = list.begin(); i != list.end(); i++)
+	{
+		cout << (*i)->StudioId
+			 << "	"
+			 << (*i)->StudioName
+			 << "	"
+			 << (*i)->StudioInfo
+			 << endl;
+	}
+	if (list.size()<1)
+	{
+		cout << "404: Not Found!" << endl;
+	}
+}
+
+void Interface::ShowUsers(list<User*>& list)
+{
+	//UserId >> usertype_id >> UserName >> UserPassword >> UserEmail
+	cout << "User_Id\tUserType\tUser_Name\tUser_Password\tUser_Email" << endl;
+	for (auto i = list.begin(); i != list.end(); i++)
+	{
+		cout << (*i)->UserId
+			 << "	"
+			 << (*i)->UserType
+			 << "	"
+			 << (*i)->UserName
+			 << "	"
+			 << (*i)->UserPassword
+			 << "	"
+			 << (*i)->UserEmail
+			 << endl;
+	}
 }

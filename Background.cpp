@@ -45,13 +45,13 @@ bool Background::SaveNewUser(User * newUser)
 	return true;
 }
 
-bool Background::RemoveComment(int CommentId)
+bool Background::RemoveTheComment(int CommentId)
 {/*
 	Comment *oldComment = Datas->FindTheComment(CommentId);
 
-	RemoveCommentInMovie(oldComment, oldComment->MovieId);
+	RemoveTheCommentInMovie(oldComment, oldComment->MovieId);
 
-	RemoveCommentInUser(oldComment, oldComment->UserId);
+	RemoveTheCommentInUser(oldComment, oldComment->UserId);
 
 	Datas->Comments.erase(find(Datas->Comments.begin(), Datas->Comments.end(), oldComment));
 
@@ -66,23 +66,23 @@ bool Background::RemoveComment(int CommentId)
 	deleteThis->MovieId = NULL;
 }
 
-bool Background::RemoveMovie(int MovieId)
+bool Background::RemoveTheMovie(int MovieId)
 {
 	/*
 	Movie *oldMovie = Datas->FindTheMovie(MovieId);
 
-	RemoveMovieInStudio(oldMovie, oldMovie->studio);
+	RemoveTheMovieInStudio(oldMovie, oldMovie->studio);
 
 	list<Comment*>::iterator i;
 	for (i = Comments.begin(); i != Comments.end(); i++)
 	{
-		RemoveCommentInMovie((*i), oldMovie);
+		RemoveTheCommentInMovie((*i), oldMovie);
 	}
 
 	list<Rating*>::iterator j;
 	for (j = Ratings.begin(); j != Ratings.end(); j++)
 	{
-		RemoveRatingInMovie((*j), oldMovie);
+		RemoveTheRatingInMovie((*j), oldMovie);
 	}
 
 	Datas->Movies.erase(find(Datas->Movies.begin(), Datas->Movies.end(), oldMovie));
@@ -102,13 +102,13 @@ bool Background::RemoveMovie(int MovieId)
 	return true;
 }
 
-bool Background::RemoveRating(int RatingId)
+bool Background::RemoveTheRating(int RatingId)
 {	
 	/*
 	Rating *oldRating = Datas->FindTheRating(RatingId);
 
-	RemoveRatingInUser(oldRating, oldRating->UserId);
-	RemoveRatingInMovie(oldRating, oldRating->MovieId);
+	RemoveTheRatingInUser(oldRating, oldRating->UserId);
+	RemoveTheRatingInMovie(oldRating, oldRating->MovieId);
 
 	Datas->Ratings.erase(find(Datas->Ratings.begin(), Datas->Ratings.end(), oldRating));
 	return true;
@@ -125,7 +125,7 @@ bool Background::RemoveRating(int RatingId)
 	return true;
 }
 
-bool Background::RemoveStudio(int StudioId)
+bool Background::RemoveTheStudio(int StudioId)
 {
 	/*
 	Studio *oldStudio = Datas->FindTheStudio(StudioId);
@@ -134,7 +134,7 @@ bool Background::RemoveStudio(int StudioId)
 
 	for (i = Movies.begin(); i != Movies.end(); i++)
 	{
-		RemoveMovieInStudio((*i), oldStudio);
+		RemoveTheMovieInStudio((*i), oldStudio);
 	}
 
 	Datas->Studios.erase(find(Datas->Studios.begin(), Datas->Studios.end(), oldStudio));
@@ -150,7 +150,7 @@ bool Background::RemoveStudio(int StudioId)
 	return true;
 }
 
-bool Background::RemoveUser(int UserId)
+bool Background::RemoveTheUser(int UserId)
 {
 	/*
 	User *oldUser = Datas->FindTheUser(UserId);
@@ -158,7 +158,7 @@ bool Background::RemoveUser(int UserId)
 	list<Comment*>::iterator i;
 	for (i = Comments.begin(); i != Comments.end(); i++)			//HEPSÝ ÝTERATOR'A ÇEVRÝLMELÝ
 	{
-		RemoveCommentInUser((*i), oldUser);
+		RemoveTheCommentInUser((*i), oldUser);
 	}
 
 	list<Rating*>::iterator j;
@@ -177,7 +177,7 @@ bool Background::RemoveUser(int UserId)
 	Datas->RemoveRelationCommentsHaveUsers(deleteThis);
 	Datas->RemoveRelationRatingsHaveUsers(deleteThis);
 }
-
+/*
 bool Background::SaveCommentInUser(Comment * comment, User * user)
 {
 	comment->UserId = user;
@@ -252,3 +252,4 @@ bool Background::RemoveRatingInMovie(Rating * rating, Movie * movie)
 	ratings.erase(find(ratings.begin(), ratings.end(), rating));
 	return true;
 }
+*/
