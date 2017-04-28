@@ -1,7 +1,7 @@
 #pragma once
 #include <algorithm>
 #include <fstream>
-#include <iterator>
+//#include <iterator>
 #include <string>
 #include <iostream>
 #include <list>
@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <ctime>
 #include <locale.h>
-#include <xutility>
+//#include <xutility>
 
 #include "Background.h"
 #include "Comment.h"
@@ -22,7 +22,7 @@
 
 #define Version 1.10
 
-using namespace std;
+
 /*
 enum userType
 {

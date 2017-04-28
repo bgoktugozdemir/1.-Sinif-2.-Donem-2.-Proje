@@ -17,7 +17,7 @@ class Background
 {
 public:
 	Background();
-	Background(Database *dataBase);
+	Background(Database *Datas);
 	~Background();
 
 	Database *Datas;

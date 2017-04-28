@@ -4,7 +4,7 @@
 #include <list>
 #include <ctime>
 #include "User.h"
-
+#include "CommonData.h"
 using namespace std;
 class User;
 class Movie;

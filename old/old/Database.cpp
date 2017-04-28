@@ -560,25 +560,30 @@ void Database::RelationRatingsHaveMovies()
 
 void Database::RemoveRelationCommentsHaveUsers(User * deleteThis)
 {
-	CommentsHaveUsers.erase(find(CommentsHaveUsers.begin(), CommentsHaveUsers.end(), deleteThis->UserId)); //UserId mi? CommentId mi?
+	//CommentsHaveUsers.erase(find(CommentsHaveUsers.begin(), CommentsHaveUsers.end(), deleteThis->UserId)); //UserId mi? CommentId mi?
+	CommentsHaveUsers.remove(deleteThis->UserId);
 }
 
 void Database::RemoveRelationRatingsHaveUsers(User * deleteThis)
 {
-	RatingsHaveUsers.erase(find(RatingsHaveUsers.begin(), RatingsHaveUsers.end(), deleteThis->UserId));
+	//RatingsHaveUsers.erase(find(RatingsHaveUsers.begin(), RatingsHaveUsers.end(), deleteThis->UserId));
+	RatingsHaveUsers.remove(deleteThis->UserId);
 }
 
 void Database::RemoveRelationMoviesHaveStudios(Studio * deleteThis)
 {
-	MoviesHaveStudios.erase(find(MoviesHaveStudios.begin(), MoviesHaveStudios.end(), deleteThis->StudioId));
+	//MoviesHaveStudios.erase(find(MoviesHaveStudios.begin(), MoviesHaveStudios.end(), deleteThis->StudioId));
+	MoviesHaveStudios.remove(deleteThis->StudioId);
 }
 
 void Database::RemoveRelationCommentsHaveMovies(Movie * deleteThis)
 {
-	CommentsHaveMovies.erase(find(CommentsHaveMovies.begin(), CommentsHaveMovies.end(), deleteThis->MovieId));
+	//CommentsHaveMovies.erase(find(CommentsHaveMovies.begin(), CommentsHaveMovies.end(), deleteThis->MovieId));
+	CommentsHaveMovies.remove(deleteThis->MovieId);
 }
 
 void Database::RemoveRelationRatingsHaveMovies(Movie * deleteThis)
 {
-	RatingsHaveMovies.erase(find(RatingsHaveMovies.begin(), RatingsHaveMovies.end(), deleteThis->MovieId));
+	//RatingsHaveMovies.erase(find(RatingsHaveMovies.begin(), RatingsHaveMovies.end(), deleteThis->MovieId));
+	RatingsHaveMovies.remove(deleteThis->MovieId);
 }

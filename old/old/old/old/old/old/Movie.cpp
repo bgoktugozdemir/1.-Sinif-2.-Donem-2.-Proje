@@ -1,7 +1,5 @@
 #include "Movie.h"
 
-using namespace std;
-
 Movie::Movie(int MovieId, string MovieTitle, string MovieGenre, string MovieReleaseYear, string MovieLanguage, float MovieRating, string MovieCensorship, string MovieStory, unsigned int MovieBudget, int studio_id)
 {
 	this->MovieId = MovieId;

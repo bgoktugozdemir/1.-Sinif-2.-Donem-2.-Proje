@@ -124,11 +124,17 @@ void Interface::ListComments()				//EDÝTLERDEKÝ SORUNU ÇÖZ
 		int CommentId;
 		cout << "Please enter the comment's id: ";
 		cin >> CommentId;
-		EditComments(Datas->FindTheComment(CommentId));  //DÜZELT
+		if (Backgrounds->ControlCommentId(CommentId) != false)
+		{
+			EditComments(Datas->FindTheComment(CommentId));  //DÜZELT
+		}
+		else
+			cout << "This id->'" << CommentId << "' not found! " << endl;
+			system("pause");
 		break;
 	case '2':
 		AddComments();
-		//break;
+		break;
 	case '3':
 		DeleteComments();
 		break;
@@ -143,9 +149,16 @@ void Interface::EditComments(Comment * comment)
 	//ID
 	cout << "Comment's Id: " << comment->CommentId << endl
 		 << "Please enter a new id: ";
+
 	int newCommentId = -1;
 	cin >> newCommentId;
-
+	if (Backgrounds->ControlCommentId(newCommentId) != false)
+	{
+		cout << "We already have this id! ";
+		system("pause");
+		system("cls");
+		Start();
+	}
 	//TIME
 
 
@@ -171,12 +184,19 @@ void Interface::EditComments(Comment * comment)
 	comment->movie_id = newmovie_id;
 	comment->user_id = newuser_id;
 	comment->comment = newcomment;
+
+	Datas->SaveFiles();
 }
 
 void Interface::AddComments()										 //CommentTime'a çözüm bul!++++++
 {
 	cout << "You will add a new comment..." << endl;
 	Comment * newComment = new Comment(-1, time(NULL), "", -1, -1);
+
+	EditComments(newComment);
+
+	Datas->Comments.push_back(newComment);
+	Datas->SaveFiles();
 }
 
 void Interface::DeleteComments()
@@ -187,12 +207,14 @@ void Interface::DeleteComments()
 
 	if (Backgrounds->RemoveTheComment(id) == false)
 	{
-		cout << "Operation failed!. Please, make sure the comment's id is correct. " << endl;
+		cout << "Operation failed!. Please, make sure the comment's id is correct. Please try again. " << endl;
 		DeleteComments();
 	}
 	else
 	{
 		cout << id << "Operation successful!" << endl;
+
+		Datas->SaveFiles();
 	}
 }
 
@@ -219,7 +241,15 @@ void Interface::ListMovies()
 		int MovieId;
 		cout << "Please enter the movie's id: ";
 		cin >> MovieId;
+		if (Backgrounds->ControlMovieId(MovieId) != false)
+		{
 		EditMovies(Datas->FindTheMovie(MovieId));
+		}
+		else
+		{
+			cout << "This id->'" << MovieId << "' not found! " << endl;
+			system("pause");
+		}
 		break;
 	case '2':
 		AddMovies();
@@ -240,6 +270,14 @@ void Interface::EditMovies(Movie * movie)
 		 << "Please enter a new id: ";
 	int newMovieId = -1;
 	cin >> newMovieId;
+
+	if (Backgrounds->ControlMovieId(newMovieId) != false)
+	{
+		cout << "We already have this id! ";
+		system("pause");
+		system("cls");
+		Start();
+	}
 
 	//TITLE
 	cout << "Movie's Title: " << movie->MovieTitle << endl
@@ -307,7 +345,7 @@ void Interface::EditMovies(Movie * movie)
 	movie->MovieBudget = newMovieBudget;
 	movie->studio_id = newstudio_id;
 
-	//TODO: ÝLÝÞKÝLER
+	Datas->SaveFiles();
 }
 
 void Interface::AddMovies()
@@ -319,6 +357,8 @@ void Interface::AddMovies()
 	EditMovies(newMovie);
 
 	Datas->Movies.push_back(newMovie);
+
+	Datas->SaveFiles();
 }
 
 void Interface::DeleteMovies()						//ÖðrenciÝþleri Classýna alternatif bul. 
@@ -335,6 +375,8 @@ void Interface::DeleteMovies()						//ÖðrenciÝþleri Classýna alternatif bul.
 	else
 	{
 		cout << id << "Operation successful!" << endl;
+
+		Datas->SaveFiles();
 	}
 }
 
@@ -361,7 +403,15 @@ void Interface::ListRatings()
 		int RatingId;
 		cout << "Please enter the rating's id: ";
 		cin >> RatingId;
+		if (Backgrounds->ControlRatingId(RatingId) != false)
+		{
 		EditRatings(Datas->FindTheRating(RatingId));
+		}
+		else
+		{
+			cout << "This id->'" << RatingId << "' not found! " << endl;
+			system("pause");
+		}
 		break;
 	case '2':
 		AddRatings();
@@ -382,6 +432,14 @@ void Interface::EditRatings(Rating * rating)
 		 << "Please enter a new id: ";
 	int newRatingId = -1;
 	cin >> newRatingId;
+
+	if (Backgrounds->ControlRatingId(newRatingId) != false)
+	{
+		cout << "We already have this id! ";
+		system("pause");
+		system("cls");
+		Start();
+	}
 
 	//RATING
 	cout << "Rating's Rating: " << rating->rating << endl
@@ -407,6 +465,8 @@ void Interface::EditRatings(Rating * rating)
 	rating->rating = newrating;
 	rating->user_id = newuser_id;
 	rating->movie_id = newmovie_id;
+
+	Datas->SaveFiles();
 }
 
 void Interface::AddRatings()
@@ -418,6 +478,8 @@ void Interface::AddRatings()
 	EditRatings(newRating);
 
 	Datas->Ratings.push_back(newRating);
+
+	Datas->SaveFiles();
 }
 
 void Interface::DeleteRatings()
@@ -434,6 +496,8 @@ void Interface::DeleteRatings()
 	else
 	{ 
 		cout << id << "Operation successful!" << endl;
+
+		Datas->SaveFiles();
 	}
 }
 
@@ -460,7 +524,15 @@ void Interface::ListStudios()
 		int StudioId;
 		cout << "Please enter the studio's id: ";
 		cin >> StudioId;
+		if (Backgrounds->ControlStudioId(StudioId) != false)
+		{
 		EditStudios(Datas->FindTheStudio(StudioId));
+		}
+		else
+		{
+			cout << "This id->'" << StudioId << "' not found! " << endl;
+			system("pause");
+		}
 		break;
 	case '2':
 		AddStudios();
@@ -482,6 +554,14 @@ void Interface::EditStudios(Studio * studio)
 	int newStudioId = -1;
 	cin >> newStudioId;
 
+	if (Backgrounds->ControlStudioId(newStudioId) != false)
+	{
+		cout << "We already have this id! ";
+		system("pause");
+		system("cls");
+		Start();
+	}
+
 	//NAME
 	cout << "Studio's Name: " << studio->StudioName << endl
 		 << "Please enter a new name: ";
@@ -497,6 +577,8 @@ void Interface::EditStudios(Studio * studio)
 	studio->StudioId = newStudioId;
 	studio->StudioName = newStudioName;
 	studio->StudioInfo = newStudioInfo;
+
+	Datas->SaveFiles();
 }
 
 void Interface::AddStudios()
@@ -508,6 +590,8 @@ void Interface::AddStudios()
 	EditStudios(newStudio);
 
 	Datas->Studios.push_back(newStudio);
+
+	Datas->SaveFiles();
 }
 
 void Interface::DeleteStudios()
@@ -524,7 +608,10 @@ void Interface::DeleteStudios()
 	else
 	{
 		cout << id << "Operation successful!" << endl;
+
+		Datas->SaveFiles();
 	}
+
 }
 
 void Interface::ListUsers()
@@ -550,7 +637,15 @@ void Interface::ListUsers()
 		int UserId;
 		cout << "Please enter the user's id: ";
 		cin >> UserId;
+		if (Backgrounds->ControlUserId(UserId) != false)
+		{
 		EditUsers(Datas->FindTheUser(UserId));
+		}
+		else
+		{
+			cout << "This id->'" << UserId << "' not found! " << endl;
+			system("pause");
+		}
 		break;
 	case '2':
 		AddUsers();
@@ -572,10 +667,18 @@ void Interface::EditUsers(User * user)
 	int newUserId = -1;
 	cin >> newUserId;
 
+	if (Backgrounds->ControlUserId(newUserId) != false)
+	{
+		cout << "We already have this id! ";
+		system("pause");
+		system("cls");
+		Start();
+	}
+
 	//USERTYPE
 	cout << "User's Type: " << user->UserType << endl;
 	userType newUserType = Member;
-	cout << "a - Administrator" << endl << "b - Writer" << "c - Movie Critic" << endl << "d - Member" << endl << "Please select a user type: ";
+	cout << "a - Administrator" << endl << "b - Writer" << endl <<"c - Movie Critic" << endl << "d - Member" << endl << "Please select a user type: ";
 	char Selection = _getch();
 	switch (Selection)
 	{
@@ -599,6 +702,8 @@ void Interface::EditUsers(User * user)
 		newUserType = Member;
 		break;
 	}
+
+	cout << endl;
 
 	//NAME
 	cout << "User's Name: " << user->UserName << endl
@@ -624,6 +729,8 @@ void Interface::EditUsers(User * user)
 	user->UserName = newUserName;
 	user->UserPassword = newUserPassword;
 	user->UserEmail = newUserEmail;
+
+	Datas->SaveFiles();
 }
 
 void Interface::AddUsers()
@@ -635,6 +742,8 @@ void Interface::AddUsers()
 	EditUsers(newUser);
 
 	Datas->Users.push_back(newUser);
+
+	Datas->SaveFiles();
 }
 
 void Interface::DeleteUsers()
@@ -651,6 +760,8 @@ void Interface::DeleteUsers()
 	else
 	{
 		cout << id << "Operation successful!" << endl;
+
+		Datas->SaveFiles();
 	}
 }
 

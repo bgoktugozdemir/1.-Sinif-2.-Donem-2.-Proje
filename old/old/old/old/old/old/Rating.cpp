@@ -1,7 +1,5 @@
 #include "Rating.h"
 
-using namespace std;
-
 Rating::Rating(int RatingId, float rating, int user_id, int movie_id)
 {
 	this->RatingId = RatingId;

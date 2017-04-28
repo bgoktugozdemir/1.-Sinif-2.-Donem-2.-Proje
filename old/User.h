@@ -1,22 +1,15 @@
 #pragma once
-//#include <iostream>
-//#include <string>
-//#include <list>
-//#include "Comment.h"
-//#include "Rating.h"
-#include "CommonData.h"
+#include <iostream>
+#include <string>
+#include <list>
+#include "Comment.h"
+#include "Rating.h"
 
 
 using namespace std;
 
-class Rating;
-class Background;
 class Comment;
-class Database;
-class Interface;
-class Movie;
 class Rating;
-class Studio;
 
 enum userType
 {

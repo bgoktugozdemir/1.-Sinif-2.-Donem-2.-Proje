@@ -177,6 +177,58 @@ bool Background::RemoveTheUser(int UserId)
 	Datas->RemoveRelationCommentsHaveUsers(deleteThis);
 	Datas->RemoveRelationRatingsHaveUsers(deleteThis);
 }
+
+Comment * Background::ControlCommentId(int id)
+{
+	if (Datas->FindTheComment(id) == NULL)
+	{
+//		cout << "This id->'" << id << "' not found! " << endl;
+		return false;
+	}
+}
+
+/*
+bool Background::ControlCommentId(int id)
+{
+	if (Datas->FindTheComment(id) == NULL)
+	{
+		cout << "This id->'" << id << "' not found! " << endl;
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+*/
+Movie * Background::ControlMovieId(int id)
+{
+	if (Datas->FindTheMovie(id) == NULL)
+	{
+		return false;
+	}
+}
+Rating * Background::ControlRatingId(int id)
+{
+	if (Datas->FindTheRating(id) == NULL)
+	{
+		return false;
+	}
+}
+Studio * Background::ControlStudioId(int id)
+{
+	if (Datas->FindTheStudio(id) == NULL)
+	{
+		return false;
+	}
+}
+User * Background::ControlUserId(int id)
+{
+	if (Datas->FindTheUser(id) == NULL)
+	{
+		return false;
+	}
+}
 /*
 bool Background::SaveCommentInUser(Comment * comment, User * user)
 {

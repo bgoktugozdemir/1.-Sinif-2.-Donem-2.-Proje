@@ -4,11 +4,13 @@
 #include <fstream>
 #include <list>
 #include <iostream>
+
 #include "Comment.h"
 #include "Movie.h"
 #include "Rating.h"
 #include "Studio.h"
 #include "User.h"
+#include "CommonData.h"
 
 using namespace std;
 
@@ -18,6 +20,7 @@ public:
 	Database();
 	~Database();
 
+	//Datas
 	list<Comment*> Comments;
 	list<Movie*> Movies;
 	list<Rating*> Ratings;

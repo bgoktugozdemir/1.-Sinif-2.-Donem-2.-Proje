@@ -1,3 +1,6 @@
+//Interface.cpp içindeki 147. satýrdaki void fonksiyonundaki id gibi diðerlerine yap. +++
+//
+
 #pragma once
 #include <algorithm>
 #include <fstream>

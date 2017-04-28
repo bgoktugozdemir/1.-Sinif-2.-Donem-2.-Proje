@@ -2,23 +2,24 @@
 
 #pragma once
 
-//#include "Database.h"
-//#include "Background.h"
-//#include <iostream>
-//#include <conio.h>
-//#include <stdio.h>
-#include "CommonData.h"
+#define Version 1.11
 
+#include <iostream>
+#include <string>
+#include <list>
+#include <conio.h>
+#include <stdio.h>
 
-//#pragma warning (disable : 4996)
+#include "Database.h"
+#include "Background.h"
 
-class Background;
-class Comment;
-class Database;
 class Movie;
 class Rating;
-class Studio;
+class Comment;
 class User;
+class Database;
+class Studio;
+class Background;			//C2679 Hatasý verdirtiyor!
 
 using namespace std;
 
@@ -75,7 +76,7 @@ public:
 	void ShowRatings(list<Rating*> &list);
 	void ShowStudios(list<Studio*> &list);
 	void ShowUsers(list<User*> &list);
-private:
+
 	Database *Datas;
 	Background *Backgrounds;
 };

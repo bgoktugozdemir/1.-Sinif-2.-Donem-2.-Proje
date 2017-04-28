@@ -1,31 +1,28 @@
 #pragma once
-#include <algorithm>
-//#include "Database.h"
-#include "CommonData.h"
 
-class Comment;
-class Database;
-class Interface;
-class Movie;
-class Rating;
-class Studio;
-class User;
+#include <iostream>
+#include <string>
+#include <list>
+
+#include "Database.h"
 
 using namespace std;
+
+class Comment;
+class Movie;
+class Rating;
+class User;
+class Studio;
+class Database;
 
 class Background
 {
 public:
 	Background();
-	Background(Database *Datas);
 	~Background();
-
+	
+	Background(Database *Datas);
 	Database *Datas;
-	list<Comment*> Comments;
-	list<Movie*> Movies;
-	list<Rating*> Ratings;
-	list<Studio*> Studios;
-	list<User*> Users;
 
 	bool SaveNewComment(Comment *newComment);
 	bool SaveNewMovie(Movie *newMovie);
@@ -33,12 +30,12 @@ public:
 	bool SaveNewStudio(Studio *newStudio);
 	bool SaveNewUser(User *newUser);
 
-	bool RemoveComment(int CommentId);
-	bool RemoveMovie(int MovieId);
-	bool RemoveRating(int RatingId);
-	bool RemoveStudio(int StudioId);
-	bool RemoveUser(int UserId);
-
+	bool RemoveTheComment(int CommentId);
+	bool RemoveTheMovie(int MovieId);
+	bool RemoveTheRating(int RatingId);
+	bool RemoveTheStudio(int StudioId);
+	bool RemoveTheUser(int UserId);
+	/*
 	//ÝLÝÞKÝLER
 	bool SaveCommentInUser(Comment *comment, User *user);
 	bool SaveCommentInMovie(Comment *comment, Movie *movie);
@@ -51,6 +48,6 @@ public:
 	bool RemoveMovieInStudio(Movie *movie, Studio *studio);
 	bool RemoveRatingInUser(Rating *rating, User *user);
 	bool RemoveRatingInMovie(Rating *rating, Movie *movie);
-
+	*/
 };
 

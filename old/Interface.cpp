@@ -19,8 +19,8 @@ void Interface::Start()
 	while (true)
 	{
 		MainMenu();
-		char Selection;
-		cin >> Selection;
+		char Selection = _getch();
+		//cin >> Selection;
 		system("CLS");
 		switch (Selection)
 		{
@@ -128,7 +128,7 @@ void Interface::ListComments()				//EDÝTLERDEKÝ SORUNU ÇÖZ
 		break;
 	case '2':
 		AddComments();
-		break;
+		//break;
 	case '3':
 		DeleteComments();
 		break;
@@ -185,7 +185,7 @@ void Interface::DeleteComments()
 	int id;
 	cin >> id;
 
-	if (Backgrounds->RemoveComment(id) == false)
+	if (Backgrounds->RemoveTheComment(id) == false)
 	{
 		cout << "Operation failed!. Please, make sure the comment's id is correct. " << endl;
 		DeleteComments();
@@ -327,7 +327,7 @@ void Interface::DeleteMovies()						//ÖðrenciÝþleri Classýna alternatif bul.
 	int id;
 	cin >> id;
 
-	if (Backgrounds->RemoveMovie(id) == false)
+	if (Backgrounds->RemoveTheMovie(id) == false)
 	{
 		cout << "Operation failed! Please, make sure the movie's id is correct. " << endl;
 		DeleteMovies();
@@ -426,7 +426,7 @@ void Interface::DeleteRatings()
 	int id;
 	cin >> id;
 
-	if (Backgrounds->RemoveRating(id) == false)
+	if (Backgrounds->RemoveTheRating(id) == false)
 	{
 		cout << "Operation failed! Please, make sure the rating's id is correct. " << endl;
 		DeleteRatings();
@@ -516,7 +516,7 @@ void Interface::DeleteStudios()
 	int id;
 	cin >> id;
 
-	if (Backgrounds->RemoveStudio(id) == false)
+	if (Backgrounds->RemoveTheStudio(id) == false)
 	{
 		cout << "Operation failed! Please, make sure the studio's id is correct. " << endl;
 		DeleteStudios();
@@ -643,7 +643,7 @@ void Interface::DeleteUsers()
 	int id;
 	cin >> id;
 
-	if (Backgrounds->RemoveUser(id) == false)
+	if (Backgrounds->RemoveTheUser(id) == false)
 	{
 		cout << "Operation failed! Please, make sure the user's id is correct. " << endl;
 		DeleteUsers();

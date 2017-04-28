@@ -1,13 +1,13 @@
 #include "Interface.h"
-#include <iostream>
-#include <conio.h>
-using namespace std;
 
 Interface::Interface()
 {
-	Start();
 }
 
+Interface::Interface(Database * data)
+{
+	Datas = data;
+}
 
 Interface::~Interface()
 {
@@ -24,15 +24,18 @@ void Interface::Start()
 		switch (Selection)
 		{
 		case 'a':
-			Movies();
+			Comments();
 			break;
 		case 'b':
-			Ratings();
+			Movies();
 			break;
 		case 'c':
-			Studios();
+			Ratings();
 			break;
 		case 'd':
+			Studios();
+			break;
+		case 'e':
 			Users();
 			break;
 		case '0':
@@ -48,167 +51,479 @@ void Interface::Start()
 
 void Interface::MainMenu()
 {
-	char yazi[40];
+	char yazi[60];
 	sprintf(yazi, "title Welcome back to Movie System (v%.2f)", Version);
 	system(yazi);
 	cout << "Main Menu" << endl
-		 << "a - Movies Menu" << endl
-		 << "b - Ratings Menu" << endl
-		 << "c - Studios Menu" << endl
-		 << "d - Users Menu" << endl
+		 << "a - Comments Menu" << endl
+		 << "b - Movies Menu" << endl
+		 << "c - Ratings Menu" << endl
+		 << "d - Studios Menu" << endl
+		 << "e - Users Menu" << endl
 	 	 << "0 - Exit" << endl
 		 << "-----------------------------------" << endl
 		 << "Please choose one of the options: ";
 }
 
+void Interface::Comments()
+{
+	cout << "Comment Menu" << endl;
+
+	ListComments();
+}
+
 void Interface::Movies()
 {
-	cout << "Movies Menu" << endl
-		 << "a - List Movies" << endl
-		 << "b - Edit Movies" << endl
-		 << "c - Add Movies" << endl
-		 << "d - Delete Movies" << endl
-		 << "0 - Go Back to Main Menu" << endl
-		 << "-----------------------------------" << endl
-		 << "Please choose one of the options: ";
+	cout << "Movies Menu" << endl;
 		 
-	char Selection = getch();
-	//cin >> Selection;
-	system("CLS");
+	ListMovies();
+}
 
-	switch(Selection)
+void Interface::Ratings()
+{
+	cout << "Rating Menu" << endl;
+		
+	ListRatings();
+}
+
+void Interface::Studios()
+{
+	cout << "Studio Menu" << endl;
+	
+	ListStudios();
+}
+
+void Interface::Users()
+{
+	cout << "User Menu" << endl;
+
+	ListUsers();
+}
+
+void Interface::ListComments()				//EDÝTLERDEKÝ SORUNU ÇÖZ
+{
+	ShowComments(Datas->Comments);
+
+	//Screen
+	cout << endl
+		<< "-----------------------------------" << endl
+		<< "1 - Edit Comment " << endl
+		<< "2 - Add Comment " << endl
+		<< "3 - Delete Comment " << endl << endl
+		<< "0 - Return to Main Menu" << endl
+		<< "-----------------------------------" << endl
+		<< "Please choose one of the options -> ";
+
+	//User
+	char Selection = _getch();
+	//cin >> Selection;
+	switch (Selection)
 	{
-	case 'a':
-		ListMovies();
+	case '1':
+		EditComments();  //DÜZELT
 		break;
-	case 'b':
+	case '2':
+		AddComments();
+		break;
+	case '3':
+		DeleteComments();
+		break;
+	case '0':
+		MainMenu();
+		break;
+	}
+}
+
+void Interface::AddComments()										 //CommentTime'a çözüm bul!
+{
+	cout << "You will add a new comment..." << endl;
+	Comment * newComment = new Comment(-1, time(NULL), "", -1, -1);
+}
+
+void Interface::ListMovies()
+{
+	ShowMovies(Datas->Movies);
+
+	//Screen
+	cout << endl
+		 << "-----------------------------------" << endl
+		 << "1 - Edit Movie " << endl
+		 << "2 - Add Movie " << endl
+		 << "3 - Delete Movie " << endl << endl
+	 	 << "0 - Return to Main Menu" << endl
+		 << "-----------------------------------" << endl
+		 << "Please choose one of the options -> ";
+
+	//User
+	char Selection = _getch();
+	//cin >> Selection;
+	switch (Selection)
+	{
+	case '1':
 		EditMovies();
 		break;
-	case 'c':
+	case '2':
 		AddMovies();
 		break;
-	case 'd':
+	case '3':
 		DeleteMovies();
 		break;
 	case '0':
 		MainMenu();
 		break;
-	default:
-		Movies();
-		break;
 	}
 }
 
-void Interface::Ratings()
+void Interface::EditMovies(Movie * movie)
 {
-	cout << "Rating Menu" << endl
-		 << "a - List Ratings" << endl
-		 << "b - Edit Ratings" << endl
-		 << "c - Add Ratings" << endl
-		 << "d - Delete Ratings" << endl
-		 << "0 - Go Back to Main Menu" << endl
-		 << "-----------------------------------" << endl
-		 << "Please choose one of the options: ";
+	//ID
+	cout << "Movie's Id: " << movie->MovieId << endl
+		 << "Please enter a new id: ";
+	int newMovieId = -1;
+	cin >> newMovieId;
 
-	char Selection = getch();
+	//TITLE
+	cout << "Movie's Title: " << movie->MovieTitle << endl
+		 << "Please enter a new title: ";
+	string newMovieTitle = "";
+	cin >> newMovieTitle;
+
+	//GENRE
+	cout << "Movie's Genres: " << movie->MovieGenre << endl
+		 << "Please enter new genres: ";
+	string newMovieGenre = "";
+	cin >> newMovieGenre;
+
+	//RELEASE YEAR
+	cout << "Movie's Release Year: " << movie->MovieReleaseYear << endl
+		 << "Please enter a new release year: ";
+	string newMovieReleaseYear = "";
+	cin >> newMovieReleaseYear;
+
+	//LANGUAGE
+	cout << "Movie's Language: " << movie->MovieLanguage << endl
+		 << "Please enter a new language: ";
+	string newMovieLanguage = "";
+	cin >> newMovieLanguage;
+
+	//RATING
+	cout << "Movie's Rating: " << movie->MovieRating << endl
+		 << "Please enter a new rating: ";
+	float newMovieRating = -1;
+	cin >> newMovieRating;
+
+	//CENSORSHIP
+	cout << "Movie's Censorship: " << movie->MovieCensorship << endl
+		 << "Please enter a new cencorship: ";
+	string newMovieCensorship = "";
+	cin >> newMovieCensorship;
+
+	//STORY
+	cout << "Movie's Story: " << movie->MovieStory << endl
+		 << "Please enter a new story: ";
+	string newMovieStory = "";
+	cin >> newMovieStory;
+
+	//BUDGET
+	cout << "Movie's Budget: " << movie->MovieBudget << endl
+		 << "Please enter a new budget: ";
+	unsigned int newMovieBudget = 1;
+	cin >> newMovieId;
+
+	//STORY
+	cout << "Movie's Studio Id: " << movie->studio_id << endl
+		 << "Please enter a new studio id: ";
+	int newstudio_id = 1;
+	cin >> newstudio_id;
+	
+	//Changes
+	movie->MovieId = newMovieId;
+	movie->MovieTitle = newMovieTitle;
+	movie->MovieGenre = newMovieGenre;
+	movie->MovieReleaseYear = newMovieReleaseYear;
+	movie->MovieLanguage = newMovieLanguage;
+	movie->MovieRating = newMovieRating;
+	movie->MovieCensorship = newMovieCensorship;
+	movie->MovieStory = newMovieStory;
+	movie->MovieBudget = newMovieBudget;
+	movie->studio_id = newstudio_id;
+
+	//TODO: ÝLÝÞKÝLER
+}
+
+void Interface::AddMovies()
+{
+	cout << "You will add a new movie..." << endl;
+
+	Movie *newMovie = new Movie(-1, "", "", "", "", -1, "", "", 1, -1);
+
+	EditMovies(newMovie);
+
+	Datas->Movies.push_back(newMovie);
+}
+/*
+void Interface::DeleteMovies()						//ÖðrenciÝþleri Classýna alternatif bul. 
+{
+	cout << "Please enter the movie's id you want to delete -> ";
+	int id;
+	cin >> id;
+	if ()
+
+	Movie * movie = Datas->FindTheMovie(id);
+}
+*/
+void Interface::ListRatings()
+{
+	ShowRatings(Datas->Ratings);
+
+	//Screen
+	cout << endl
+		<< "-----------------------------------" << endl
+		<< "1 - Edit Rating " << endl
+		<< "2 - Add Rating " << endl
+		<< "3 - Delete Rating " << endl << endl
+		<< "0 - Return to Main Menu" << endl
+		<< "-----------------------------------" << endl
+		<< "Please choose one of the options -> ";
+
+	//User
+	char Selection = _getch();
 	//cin >> Selection;
-	system("CLS");
-
 	switch (Selection)
 	{
-	case 'a':
-		ListRatings();
-		break;
-	case 'b':
+	case '1':
 		EditRatings();
 		break;
-	case 'c':
+	case '2':
 		AddRatings();
 		break;
-	case 'd':
+	case '3':
 		DeleteRatings();
 		break;
 	case '0':
 		MainMenu();
 		break;
-	default:
-		Ratings();
-		break;
 	}
 }
 
-void Interface::Studios()
+void Interface::EditRatings(Rating * rating)
 {
-	cout << "Studio Menu" << endl
-		 << "a - List Studios" << endl
-		 << "b - Edit Studios" << endl
-		 << "c - Add Studios" << endl
-		 << "d - Delete Studios" << endl
-		 << "0 - Go Back to Main Menu" << endl
-		 << "-----------------------------------" << endl
-		 << "Please choose one of the options: ";
+	//ID
+	cout << "Rating's Id: " << rating->RatingId << endl
+		 << "Please enter a new id: ";
+	int newRatingId = -1;
+	cin >> newRatingId;
 
-	char Selection = getch();
+	//RATING
+	cout << "Rating's Rating: " << rating->rating << endl
+		 << "Please enter a new rating: ";
+	float newrating = -1;
+	cin >> newrating;
+
+	//USER ID
+	cout << "Rating's User Id: " << rating->user_id << endl
+		<< "Please enter a new user id: ";
+	int newuser_id = 1;
+	cin >> newuser_id;
+
+	//MOVIE ID
+	cout << "Rating's Movie Id: " << rating->movie_id << endl
+		<< "Please enter a new movie id: ";
+	int newmovie_id = 1;
+	cin >> newmovie_id;
+
+	//CHANGES
+
+	rating->RatingId = newRatingId;
+	rating->rating = newrating;
+	rating->user_id = newuser_id;
+	rating->movie_id = newmovie_id;
+}
+
+void Interface::AddRatings()
+{
+	cout << "You will add a new rating..." << endl;
+
+	Rating *newRating = new Rating(-1, -1, -1, -1);
+
+	EditRatings(newRating);
+
+	Datas->Ratings.push_back(newRating);
+}
+
+void Interface::ListStudios()
+{
+	ShowStudios(Datas->Studios);
+
+	//Screen
+	cout << endl
+		<< "-----------------------------------" << endl
+		<< "1 - Edit Studio " << endl
+		<< "2 - Add Studio " << endl
+		<< "3 - Delete Studio " << endl << endl
+		<< "0 - Return to Main Menu" << endl
+		<< "-----------------------------------" << endl
+		<< "Please choose one of the options -> ";
+
+	//User
+	char Selection = _getch();
 	//cin >> Selection;
-	system("CLS");
-
 	switch (Selection)
 	{
-	case 'a':
-		ListStudios();
-		break;
-	case 'b':
+	case '1':
 		EditStudios();
 		break;
-	case 'c':
+	case '2':
 		AddStudios();
 		break;
-	case 'd':
+	case '3':
 		DeleteStudios();
 		break;
 	case '0':
 		MainMenu();
 		break;
-	default:
-		Studios();
-		break;
 	}
 }
 
-void Interface::Users()
+void Interface::EditStudios(Studio * studio)
 {
-	cout << "User Menu" << endl
-		 << "a - List Users" << endl
-		 << "b - Edit Users" << endl
-		 << "c - Add Users" << endl
-		 << "d - Delete Users" << endl
-		 << "0 - Go Back to Main Menu" << endl
-		 << "-----------------------------------" << endl
-		 << "Please choose one of the options: ";
+	//ID
+	cout << "Studio's Id: " << studio->StudioId << endl
+		 << "Please enter a new id: ";
+	int newStudioId = -1;
+	cin >> newStudioId;
 
-	char Selection = getch();
+	//NAME
+	cout << "Studio's Name: " << studio->StudioName << endl
+		 << "Please enter a new name: ";
+	string newStudioName = "";
+	cin >> newStudioName;
+
+	//INFO
+	cout << "Studio's Info: " << studio->StudioInfo << endl
+		<< "Please enter a new info: ";
+	string newStudioInfo = "";
+	cin >> newStudioInfo;
+
+	studio->StudioId = newStudioId;
+	studio->StudioName = newStudioName;
+	studio->StudioInfo = newStudioInfo;
+}
+
+void Interface::AddStudios()
+{
+	cout << "You will add a new studio..." << endl;
+
+	Studio *newStudio = new Studio(-1, "", "");
+
+	EditStudios(newStudio);
+
+	Datas->Studios.push_back(newStudio);
+}
+
+void Interface::ListUsers()
+{
+	ShowUsers(Datas->Users);
+
+	//Screen
+	cout << endl
+		<< "-----------------------------------" << endl
+		<< "1 - Edit User " << endl
+		<< "2 - Add User " << endl
+		<< "3 - Delete User " << endl << endl
+		<< "0 - Return to Main Menu" << endl
+		<< "-----------------------------------" << endl
+		<< "Please choose one of the options -> ";
+
+	//User
+	char Selection = _getch();
 	//cin >> Selection;
-	system("CLS");
-
 	switch (Selection)
 	{
-	case 'a':
-		ListUsers();
-		break;
-	case 'b':
+	case '1':
 		EditUsers();
 		break;
-	case 'c':
+	case '2':
 		AddUsers();
 		break;
-	case 'd':
+	case '3':
 		DeleteUsers();
 		break;
 	case '0':
 		MainMenu();
 		break;
+	}
+}
+
+void Interface::EditUsers(User * user)
+{
+	//ID
+	cout << "User's Id: " << user->UserId << endl
+		 << "Please enter a new id: ";
+	int newUserId = -1;
+	cin >> newUserId;
+
+	//USERTYPE
+	cout << "User's Type: " << user->UserType << endl;
+	userType newUserType = Member;
+	cout << "a - Administrator" << endl << "b - Writer" << "c - Movie Critic" << endl << "d - Member" << endl << "Please select a user type: ";
+	char Selection = _getch();
+	switch (Selection)
+	{
+	case 'a':
+		newUserType = Administrator;
+		break;
+
+	case 'b':
+		newUserType = Writer;
+		break;
+
+	case 'c':
+		newUserType = MovieCritic;
+		break;
+
+	case 'd':
+		newUserType = Member;
+		break;
+
 	default:
-		Users();
+		newUserType = Member;
 		break;
 	}
+
+	//NAME
+	cout << "User's Name: " << user->UserName << endl
+		 << "Please enter a new name: ";
+	string newUserName = "";
+	cin >> newUserName;
+
+	//PASSWORD
+	cout << "User's Password: " << user->UserPassword << endl
+		 << "Please enter a new password: ";
+	string newUserPassword = "";
+	cin >> newUserPassword;
+
+	//MAIL
+	cout << "User's Mail: " << user->UserEmail << endl
+		 << "Please enter a new email: ";
+	string newUserEmail = "";
+	cin >> newUserEmail;
+
+	//CHANGES
+	user->UserId = newUserId;
+	user->UserType = newUserType;
+	user->UserName = newUserName;
+	user->UserPassword = newUserPassword;
+	user->UserEmail = newUserEmail;
+}
+
+void Interface::AddUsers()
+{
+	cout << "You will add a new user..." << endl;
+
+	User *newUser = new User(-1, Member, "", "", "");
+
+	EditUsers(newUser);
+
+	Datas->Users.push_back(newUser);
 }
