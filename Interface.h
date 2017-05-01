@@ -1,8 +1,8 @@
-//LÝST EKRANLARINDAKÝ EDÝTLERDE SORUN VAR!
+//LÝST EKRANLARINDAKÝ EDÝTLERDE SORUN VAR! +++
 
 #pragma once
 
-#define Version 1.12
+#define Version 1.13
 
 #include <iostream>
 #include <string>

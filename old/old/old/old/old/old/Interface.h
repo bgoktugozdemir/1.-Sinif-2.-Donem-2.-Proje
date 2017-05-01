@@ -2,12 +2,23 @@
 
 #pragma once
 
-#include "Database.h"
-#include "Background.h"
-#include <iostream>
-#include <conio.h>
-#include <stdio.h>
+//#include "Database.h"
+//#include "Background.h"
+//#include <iostream>
+//#include <conio.h>
+//#include <stdio.h>
 #include "CommonData.h"
+
+
+//#pragma warning (disable : 4996)
+
+class Background;
+class Comment;
+class Database;
+class Movie;
+class Rating;
+class Studio;
+class User;
 
 using namespace std;
 

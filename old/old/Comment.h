@@ -1,20 +1,14 @@
 #pragma once
-//#include <iostream>
-//#include <string>
-//#include <list>
-//#include <ctime>
-//#include "User.h"
-#include "CommonData.h"
+#include <iostream>
+#include <string>
+#include <list>
+#include <ctime>
+#include <time.h>
+#include "User.h"
+#include "Movie.h"
 
-class User;
-class Movie;
-class Background;
-class Database;
-class Interface;
-class Movie;
-class Rating;
-class Studio;
-class User;
+
+
 
 using namespace std;
 

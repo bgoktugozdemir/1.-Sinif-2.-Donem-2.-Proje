@@ -2,7 +2,7 @@
 
 #pragma once
 
-#define Version 1.11
+#define Version 1.12
 
 #include <iostream>
 #include <string>

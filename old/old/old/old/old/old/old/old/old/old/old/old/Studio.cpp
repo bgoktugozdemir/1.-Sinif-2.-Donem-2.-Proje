@@ -1,6 +1,6 @@
 #include "Studio.h"
 
-
+using namespace std;
 
 Studio::Studio(int StudioId, string StudioName, string StudioInfo)
 {

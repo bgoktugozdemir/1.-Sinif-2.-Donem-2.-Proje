@@ -20,7 +20,7 @@
 #include "Studio.h"
 #include "User.h"
 
-#define Version 1.09
+#define Version 1.10
 
 using namespace std;
 /*

@@ -18,10 +18,10 @@ void Interface::Start()
 {
 	while (true)
 	{
+		system("CLS");
 		MainMenu();
 		char Selection = _getch();
 		//cin >> Selection;
-		system("CLS");
 		switch (Selection)
 		{
 		case 'a':
@@ -103,6 +103,7 @@ void Interface::Users()
 
 void Interface::ListComments()				//EDÝTLERDEKÝ SORUNU ÇÖZ
 {
+	system("CLS");
 	ShowComments(Datas->Comments);
 
 	//Screen
@@ -156,7 +157,6 @@ void Interface::EditComments(Comment * comment)
 	{
 		cout << "We already have this id! ";
 		system("pause");
-		system("cls");
 		Start();
 	}
 	//TIME
@@ -204,22 +204,30 @@ void Interface::DeleteComments()
 	cout << "Please enter the comment's id -> ";
 	int id;
 	cin >> id;
-
-	if (Backgrounds->RemoveTheComment(id) == false)
+	if (id == 0)
 	{
-		cout << "Operation failed!. Please, make sure the comment's id is correct. Please try again. " << endl;
-		DeleteComments();
+		Start();
 	}
 	else
 	{
-		cout << id << "Operation successful!" << endl;
+		if (Backgrounds->RemoveTheComment(id) == false)
+		{
+			cout << "Operation failed!. Please, make sure the comment's id is correct. Please try again. " << endl;
+			DeleteComments();
+		}
+		else
+		{
+			cout << id << "Operation successful!" << endl;
 
-		Datas->SaveFiles();
+			Datas->SaveFiles();
+		}
 	}
 }
 
 void Interface::ListMovies()
 {
+	system("CLS");
+
 	ShowMovies(Datas->Movies);
 
 	//Screen
@@ -275,7 +283,6 @@ void Interface::EditMovies(Movie * movie)
 	{
 		cout << "We already have this id! ";
 		system("pause");
-		system("cls");
 		Start();
 	}
 
@@ -366,22 +373,31 @@ void Interface::DeleteMovies()						//ÖðrenciÝþleri Classýna alternatif bul.
 	cout << "Please enter the movie's id -> ";
 	int id;
 	cin >> id;
-
-	if (Backgrounds->RemoveTheMovie(id) == false)
+	if (id = 0)
 	{
-		cout << "Operation failed! Please, make sure the movie's id is correct. " << endl;
-		DeleteMovies();
+		Start();
 	}
 	else
 	{
-		cout << id << "Operation successful!" << endl;
 
-		Datas->SaveFiles();
+		if (Backgrounds->RemoveTheMovie(id) == false)
+		{
+			cout << "Operation failed! Please, make sure the movie's id is correct. " << endl;
+			DeleteMovies();
+		}
+		else
+		{
+			cout << id << "Operation successful!" << endl;
+
+			Datas->SaveFiles();
+		}
 	}
 }
 
 void Interface::ListRatings()
 {
+	system("CLS");
+
 	ShowRatings(Datas->Ratings);
 
 	//Screen
@@ -487,22 +503,30 @@ void Interface::DeleteRatings()
 	cout << "Please enter the rating's id -> ";
 	int id;
 	cin >> id;
-
-	if (Backgrounds->RemoveTheRating(id) == false)
+	if (id == 0)
 	{
-		cout << "Operation failed! Please, make sure the rating's id is correct. " << endl;
-		DeleteRatings();
+		Start();
 	}
 	else
-	{ 
-		cout << id << "Operation successful!" << endl;
+	{
+		if (Backgrounds->RemoveTheRating(id) == false)
+		{
+			cout << "Operation failed! Please, make sure the rating's id is correct. " << endl;
+			DeleteRatings();
+		}
+		else
+		{
+			cout << id << "Operation successful!" << endl;
 
-		Datas->SaveFiles();
+			Datas->SaveFiles();
+		}
 	}
 }
 
 void Interface::ListStudios()
 {
+	system("CLS");
+
 	ShowStudios(Datas->Studios);
 
 	//Screen
@@ -599,23 +623,31 @@ void Interface::DeleteStudios()
 	cout << "Please enter the studio's id -> ";
 	int id;
 	cin >> id;
-
-	if (Backgrounds->RemoveTheStudio(id) == false)
+	if (id == 0)
 	{
-		cout << "Operation failed! Please, make sure the studio's id is correct. " << endl;
-		DeleteStudios();
+		Start();
 	}
 	else
 	{
-		cout << id << "Operation successful!" << endl;
+		if (Backgrounds->RemoveTheStudio(id) == false)
+		{
+			cout << "Operation failed! Please, make sure the studio's id is correct. " << endl;
+			DeleteStudios();
+		}
+		else
+		{
+			cout << id << "Operation successful!" << endl;
 
-		Datas->SaveFiles();
+			Datas->SaveFiles();
+		}
 	}
 
 }
 
 void Interface::ListUsers()
 {
+	system("CLS");
+
 	ShowUsers(Datas->Users);
 
 	//Screen
@@ -751,17 +783,23 @@ void Interface::DeleteUsers()
 	cout << "Please enter the user's id -> ";
 	int id;
 	cin >> id;
-
-	if (Backgrounds->RemoveTheUser(id) == false)
+	if (id == 0)
 	{
-		cout << "Operation failed! Please, make sure the user's id is correct. " << endl;
-		DeleteUsers();
+		Start();
 	}
 	else
 	{
-		cout << id << "Operation successful!" << endl;
+		if (Backgrounds->RemoveTheUser(id) == false)
+		{
+			cout << "Operation failed! Please, make sure the user's id is correct. " << endl;
+			DeleteUsers();
+		}
+		else
+		{
+			cout << id << "Operation successful!" << endl;
 
-		Datas->SaveFiles();
+			Datas->SaveFiles();
+		}
 	}
 }
 

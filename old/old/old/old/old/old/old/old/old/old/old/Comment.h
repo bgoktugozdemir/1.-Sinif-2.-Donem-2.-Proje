@@ -22,12 +22,6 @@ public:
 	Comment();
 	Comment(int CommentId, time_t CommentTime, string comment, int movie_id, int user_id);
 	~Comment();
-	void addComment();
-	void deleteComment();
-	void editComment();
-	void showComment();
-	void DosyayaYaz();
-	void DosyayiOku();
 };
 
 

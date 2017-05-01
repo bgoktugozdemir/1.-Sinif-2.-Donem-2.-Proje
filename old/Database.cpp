@@ -21,6 +21,7 @@ Comment * Database::FindTheComment(int id)
 			break;
 		}
 	}
+	
 	return found;
 }
 
@@ -437,7 +438,7 @@ bool Database::SaveUser(string path)
 			string UserPassword = (*i)->UserPassword;
 			string UserEmail = (*i)->UserEmail;
 
-			file << endl << UserId << tab << UserType << tab << UserName << UserPassword << UserEmail;
+			file << endl << UserId << tab << UserType << tab << UserName << tab << UserPassword << tab << UserEmail;
 		}
 		file.close();
 		return true;

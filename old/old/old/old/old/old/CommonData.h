@@ -1,5 +1,7 @@
 #pragma once
+#include <algorithm>
 #include <fstream>
+#include <iterator>
 #include <string>
 #include <iostream>
 #include <list>
@@ -20,6 +22,7 @@
 #define Version 1.08
 
 using namespace std;
+
 enum userType
 {
 	Administrator,

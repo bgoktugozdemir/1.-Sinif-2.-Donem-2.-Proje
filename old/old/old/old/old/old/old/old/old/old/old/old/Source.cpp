@@ -1,14 +1,17 @@
 ﻿//Berat G�ktu� �zdemir 150101002
 
 #include <iostream>
+/*
 #include "Comment.h"
 #include "CommonData.h"
+*/
 #include "Interface.h"
 
 using namespace std;
 
 int main()
 {
+
 	Interface dene; //ÇALIŞMIYOR
 	return 0;
 	/*

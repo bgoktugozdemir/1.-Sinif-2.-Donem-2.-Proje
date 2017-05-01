@@ -12,7 +12,7 @@ User::User(int UserId, userType UserType, string UserName, string UserPassword, 
 User::User()
 {
 	this->UserId = 0;
-	//this->UserType = NULL;
+	this->UserType = Member;
 	this->UserName = "";
 	this->UserPassword = "";
 	this->UserEmail = "";

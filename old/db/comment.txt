@@ -1,2 +1,4 @@
-1	86465431564	Yorum	2	id
-1	86465431564	Yorum	2	3
+Comment_Id	Comment_Time	Comment	Movie_Id	User_Id
+1	1493402777	Yorum	2	3
+2	1493406660	Hebele	3	4
+4	1493410075	Hubele	3	5

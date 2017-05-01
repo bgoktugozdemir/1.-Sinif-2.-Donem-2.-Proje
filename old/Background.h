@@ -35,6 +35,12 @@ public:
 	bool RemoveTheRating(int RatingId);
 	bool RemoveTheStudio(int StudioId);
 	bool RemoveTheUser(int UserId);
+
+	Comment * ControlCommentId (int id);
+	Movie * ControlMovieId(int id);
+	Rating * ControlRatingId(int id);
+	Studio * ControlStudioId(int id);
+	User * ControlUserId(int id);
 	/*
 	//ÝLÝÞKÝLER
 	bool SaveCommentInUser(Comment *comment, User *user);
